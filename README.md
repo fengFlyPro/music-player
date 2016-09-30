@@ -1,4 +1,4 @@
 # MusicPlayer
-Like a QQ music theme
+A music player, skin like QQ music.
 
 Demo: https://maicong.me/music
