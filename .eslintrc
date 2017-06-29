@@ -1,0 +1,11 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": ["vue"],
+  "plugins": ["vue"],
+  "globals": {
+    "document": true,
+    "navigator": true,
+    "window": true
+  }
+}
