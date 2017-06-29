@@ -1,6 +1,6 @@
 module.exports = {
-  plugins: {
-    'postcss-cssnext': {
+  plugins: [
+    require('postcss-cssnext')({
       browsers: [
         'Chrome >= 28',
         'Firefox >= 28',
@@ -17,6 +17,15 @@ module.exports = {
         'BlackBerry >= 10',
         'Samsung >= 4'
       ]
-    }
-  }
+    }),
+    require('postcss-pxtorem')({
+      rootValue: 12,
+      propList: ['*'],
+      mediaQuery: true
+    }),
+    process.env.NODE_ENV === 'production' &&
+      require('cssnano')({
+        preset: 'default'
+      })
+  ]
 }
