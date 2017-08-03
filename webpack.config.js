@@ -14,7 +14,7 @@ process.noDeprecation = true
 const config = {
   entry: {
     music: 'index.js',
-    vendor: ['zepto', 'fastclick']
+    vendor: ['fastclick']
   },
   output: {
     path: resolve(__dirname, 'dist'),
@@ -28,7 +28,7 @@ const config = {
   },
   devServer: {
     port: '3001',
-    host: '0.0.0.0',
+    host: '127.0.0.1',
     stats: 'errors-only',
     contentBase: resolve(__dirname, 'src'),
     hot: true,
