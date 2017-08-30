@@ -1,6 +1,7 @@
 module.exports = {
   plugins: [
     require('postcss-cssnext')({
+      warnForDuplicates: false,
       browsers: [
         'Chrome >= 28',
         'Firefox >= 28',

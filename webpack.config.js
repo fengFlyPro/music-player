@@ -7,14 +7,13 @@ const LodashWebpackPlugin = require('lodash-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin')
 
-const IS_PROD = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production'
 
 process.noDeprecation = true
 
 const config = {
   entry: {
-    music: 'index.js',
-    vendor: ['fastclick']
+    music: 'index.js'
   },
   output: {
     path: resolve(__dirname, 'dist'),
@@ -44,8 +43,14 @@ const config = {
     hints: false
   },
   resolve: {
-    extensions: ['.js'],
-    modules: [resolve(__dirname, 'src'), 'node_modules']
+    extensions: ['.js', '.styl', '.pug'],
+    modules: [resolve(__dirname, 'src'), 'node_modules'],
+    alias: {
+      '~': resolve(__dirname, 'src'),
+      '~assets': resolve(__dirname, 'src/assets'),
+      '~core': resolve(__dirname, 'src/core'),
+      '~page': resolve(__dirname, 'src/page')
+    }
   },
   module: {
     rules: [
@@ -101,7 +106,9 @@ const config = {
             {
               loader: 'css-loader',
               options: {
-                minimize: IS_PROD
+                minimize: isProd,
+                importLoaders: 1,
+                sourceMap: !isProd
               }
             },
             {
@@ -151,7 +158,7 @@ const config = {
       filename: 'index.html',
       template: resolve(__dirname, 'src/index.pug'),
       inject: true,
-      minify: IS_PROD && {
+      minify: isProd && {
         html5: true,
         minifyJS: true,
         minifyCSS: true,
@@ -186,7 +193,7 @@ const config = {
   ]
 }
 
-if (IS_PROD) {
+if (isProd) {
   config.devtool = false
   config.plugins = config.plugins.concat([
     new CleanWebpackPlugin(['dist'], {
@@ -196,7 +203,7 @@ if (IS_PROD) {
       root: resolve(__dirname)
     }),
     new UglifyJsWebpackPlugin({
-      /*eslint camelcase: 0*/
+      /* eslint camelcase: 0 */
       mangle: true,
       beautify: false,
       comments: false,
