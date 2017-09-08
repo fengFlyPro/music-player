@@ -27,7 +27,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --watch webpack.config.js --exec webpack-dev-server",
+    "dev": "cross-env NODE_ENV=development nodemon -w postcss.config.js -w webpack.config.js -x webpack-dev-server",
     "prod": "cross-env NODE_ENV=production webpack"
   },
   "devDependencies": {

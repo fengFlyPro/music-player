@@ -13,7 +13,7 @@ process.noDeprecation = true
 
 const config = {
   entry: {
-    music: 'index.js'
+    music: resolve(__dirname, 'src/index.js')
   },
   output: {
     path: resolve(__dirname, 'dist'),
@@ -26,7 +26,7 @@ const config = {
     children: false
   },
   devServer: {
-    port: '3001',
+    port: 3001,
     host: '127.0.0.1',
     stats: 'errors-only',
     contentBase: resolve(__dirname, 'src'),
@@ -48,8 +48,7 @@ const config = {
     alias: {
       '~': resolve(__dirname, 'src'),
       '~assets': resolve(__dirname, 'src/assets'),
-      '~core': resolve(__dirname, 'src/core'),
-      '~page': resolve(__dirname, 'src/page')
+      '~core': resolve(__dirname, 'src/core')
     }
   },
   module: {
@@ -223,6 +222,7 @@ if (isProd) {
 } else {
   config.plugins = config.plugins.concat([
     new Webpack.NamedModulesPlugin(),
+    new Webpack.HashedModuleIdsPlugin(),
     new Webpack.HotModuleReplacementPlugin()
   ])
 }
