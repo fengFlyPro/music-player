@@ -4,6 +4,8 @@
 
 Demo: [https://maicong.me/music](https://maicong.me/music)
 
+### Warning! The project is temporarily unavailable.
+
 ## Build Setup
 
 **Requires Node.js 6+**
